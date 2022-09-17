@@ -2,11 +2,12 @@ import React from 'react'
 import Pagination from './Pagination'
 import Search from './Search'
 import Stories from './Stories'
-
+import { useGlobalContext } from './Context'
 const App = () => {
+  const data =useGlobalContext();
   return (
     <>
-      <h1>Dbsmandal Tech news website</h1>
+      <h2>Dbsmandal Tech news website {data}</h2>
       <Search/>
       <Pagination/>
       <Stories/>
