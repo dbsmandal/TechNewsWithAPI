@@ -5,7 +5,7 @@ const Pagination = () => {
   const {nbPages,page , getPrevPage, getNextPage}=useGlobalContext();
   return (
     <>
-    <div>
+    <div className="pagination-btn">
       <button onClick={() => getPrevPage()}>Prev</button>
       <p>
        {page+1} of {nbPages}
