@@ -52,10 +52,23 @@ const AppProvider = ({ children }) => {
             payload:searchQuery,
         });
     }
+    const getPrevPage = ()=>{
+        dispatch({
+            type:"PREV_PAGE"
+        })
+    };
+
+    const getNextPage = ()=>{
+        dispatch({
+            type:"NEXT_PAGE"
+        })
+    }
+
+
     useEffect(() => {
         fetchApiData(`${API} query=${state.query}&page=${state.page}`)
-    }, [state.query]);
-    return <AppContext.Provider value={{...state, removePost,searchPost  }}>
+    }, [state.query,state.page]);
+    return <AppContext.Provider value={{...state, removePost,searchPost ,getPrevPage , getNextPage}}>
         {children}
     </AppContext.Provider>
 };
