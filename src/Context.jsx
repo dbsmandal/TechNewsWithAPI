@@ -7,7 +7,7 @@ let API ="https://hn.algolia.com/api/v1/search?query=";
 
 const initialState = {
     isLoading: true,
-    query: "CSS",
+    query: "React",
     nbPages: 0,
     page: 0,
     hits: []
@@ -38,10 +38,18 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const removePost=(post_ID)=>{
+        dispatch({
+            type:"REMOVE_POST",
+            payload: post_ID
+        })
+
+    }
+
     useEffect(() => {
         fetchApiData(`${API} query=${state.query}&page=${state.page}`)
     }, []);
-    return <AppContext.Provider value={{...state}}>
+    return <AppContext.Provider value={{...state, removePost}}>
         {children}
     </AppContext.Provider>
 };

@@ -1,35 +1,37 @@
 import React from 'react'
 import { useGlobalContext } from './Context'
 const Stories = () => {
-  const { hits, isLoading } = useGlobalContext();
+  const { hits, isLoading,removePost } = useGlobalContext();
 
   if (isLoading) {
     return (
       <>
-        <h1>Loading ............</h1>
+        <h1>Loading ......</h1>
       </>
     );
   }
   return (
     <>
-      <div className="stories-div">
+      <div className="stories-div" >
         {
-          hits.map((currPost) => {
-            const{ title,author,objectId,url,num_comments }=currPost;
-            return <>
-              <div className="card" key={objectId}>
+          hits.map((curPost) => {
+            const{ title,author,objectID,url,num_comments }=curPost;
+            return(
+              <div key={objectID}>
+              <div className="card" >
                 <h2>{title}</h2>
                 <p>
                   by <span>{author}</span> || <span>{num_comments}</span> Comments
                 </p>
                 <div className="card-button">
                   <a href={url} target="_blank">Read More</a>
-                  <a href="#">Delete</a>
+                  <a href="#" onClick={()=>removePost(objectID)}>Delete</a>
                 </div>
               </div>
 
             
-            </>
+            </div>
+            )
           })
         }
 

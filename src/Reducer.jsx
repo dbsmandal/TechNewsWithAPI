@@ -15,6 +15,13 @@ const reducer=(state,action)=>{
                 nbPages:action.payload.nbPages,
 
             }
+        case "REMOVE_POST":
+            return {
+                ...state,
+                hits:state.hits.filter(
+                    (currElem)=>currElem.objectID !== action.payload
+                ),
+            }
     }
     return state;
 };
